@@ -6,6 +6,7 @@ target 'SIOSP' do
   use_frameworks!
 
   # Pods for SIOSP
+  pod 'pjsip'
 
   target 'SIOSPTests' do
     inherit! :search_paths

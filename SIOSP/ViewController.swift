@@ -14,7 +14,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
+    
+    @IBAction func touchButton(_ sender: Any) {
+        let pjsipIntegration: PJSIPIntegration = PJSIPIntegration()
+        pjsipIntegration.testSIP()
+    }
 }
 
