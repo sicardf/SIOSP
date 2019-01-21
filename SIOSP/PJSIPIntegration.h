@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) id someProperty;
 
++ (instancetype _Nonnull)sharedInstance;
 - (void) testPJSIP;
 - (void) makeCall;
 - (BOOL) activateSoundDevice;

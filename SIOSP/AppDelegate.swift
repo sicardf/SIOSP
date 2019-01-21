@@ -13,9 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        addObserverIncomingCall()
+        PJSIPIntegration.sharedInstance().configurePJSIP()
         return true
     }
 
@@ -41,6 +43,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    private func addObserverIncomingCall() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(incomingCall),
+                                               name: .incomingCall,
+                                               object: nil)
+    }
+    
+    @objc func incomingCall() {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? ViewController {
+                vc.incomingCall()
+            }
+        }
+    }
 
 }
 
+extension Notification.Name {
+    static let incomingCall = Notification.Name(
+        rawValue: "incomingCall")
+}

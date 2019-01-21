@@ -16,6 +16,16 @@ static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_
 
 @implementation PJSIPIntegration
 
++ (instancetype)sharedInstance {
+    static dispatch_once_t once;
+    static id sharedInstance;
+    
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 - (void) testPJSIP {
     pjsua_create();
     status = pjsua_start();
@@ -133,6 +143,10 @@ static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_
     return result;
 }
 
+- (void) startIncomingCall {
+    
+}
+
 static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_data *rdata) {
     NSLog(@"Detected inbound call(%d) for account:%d", call_id, acc_id);
     
@@ -144,10 +158,12 @@ static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_
         NSLog(@"ENTRANT");
     }
     
-    status = pjsua_call_answer((pjsua_call_id)call_id, PJSIP_SC_OK, NULL, NULL);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"Error %d while sending status code PJSIP_SC_RINGING", status);
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"incomingCall" object:NULL];
+    
+//    status = pjsua_call_answer((pjsua_call_id)call_id, PJSIP_SC_OK, NULL, NULL);
+//    if (status != PJ_SUCCESS) {
+//        NSLog(@"Error %d while sending status code PJSIP_SC_RINGING", status);
+//    }
     
 }
 

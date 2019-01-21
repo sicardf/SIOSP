@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42E6C4A8EA41EB2968230C88 /* Pods_SIOSPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469EBF50973D20798F9586AC /* Pods_SIOSPTests.framework */; };
 		4DDC2E7621F37AFC00F189DF /* PJSIPIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDC2E7521F37AFC00F189DF /* PJSIPIntegration.m */; };
 		4DF558EB21F372F6004C4428 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF558EA21F372F6004C4428 /* AppDelegate.swift */; };
 		4DF558ED21F372F6004C4428 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF558EC21F372F6004C4428 /* ViewController.swift */; };
@@ -15,6 +16,8 @@
 		4DF558F521F372FA004C4428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF558F321F372FA004C4428 /* LaunchScreen.storyboard */; };
 		4DF5590021F372FA004C4428 /* SIOSPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF558FF21F372FA004C4428 /* SIOSPTests.swift */; };
 		4DFE06DD21F518FC0009049E /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DFE06DC21F518FC0009049E /* ringtone.wav */; };
+		84276FB121F60A250068F398 /* IncomingCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84276FB021F60A250068F398 /* IncomingCallViewController.swift */; };
+		95276EA7ECF95779CA5331D4 /* Pods_SIOSP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FB0D158BDD2F08D64C3C11 /* Pods_SIOSP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37FB0D158BDD2F08D64C3C11 /* Pods_SIOSP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SIOSP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		382CEB69D3C2A87F343C524D /* Pods-SIOSPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SIOSPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SIOSPTests/Pods-SIOSPTests.release.xcconfig"; sourceTree = "<group>"; };
+		3FFD2BA0EA3C882AF4AEEBDC /* Pods-SIOSPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SIOSPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SIOSPTests/Pods-SIOSPTests.debug.xcconfig"; sourceTree = "<group>"; };
+		469EBF50973D20798F9586AC /* Pods_SIOSPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SIOSPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DDC2E7421F37AFB00F189DF /* SIOSP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SIOSP-Bridging-Header.h"; sourceTree = "<group>"; };
 		4DDC2E7521F37AFC00F189DF /* PJSIPIntegration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PJSIPIntegration.m; sourceTree = "<group>"; };
 		4DDC2E7721F37B3500F189DF /* PJSIPIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PJSIPIntegration.h; sourceTree = "<group>"; };
@@ -42,6 +49,9 @@
 		4DF558FF21F372FA004C4428 /* SIOSPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIOSPTests.swift; sourceTree = "<group>"; };
 		4DF5590121F372FA004C4428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DFE06DC21F518FC0009049E /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
+		5F2FBCC56D16607C5686E4D3 /* Pods-SIOSP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SIOSP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SIOSP/Pods-SIOSP.debug.xcconfig"; sourceTree = "<group>"; };
+		84276FB021F60A250068F398 /* IncomingCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallViewController.swift; sourceTree = "<group>"; };
+		BFDDED88BE586849049690A3 /* Pods-SIOSP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SIOSP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SIOSP/Pods-SIOSP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95276EA7ECF95779CA5331D4 /* Pods_SIOSP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42E6C4A8EA41EB2968230C88 /* Pods_SIOSPTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +80,8 @@
 				4DF558E921F372F6004C4428 /* SIOSP */,
 				4DF558FE21F372FA004C4428 /* SIOSPTests */,
 				4DF558E821F372F6004C4428 /* Products */,
+				9C5FB150033F66187D1CF70F /* Pods */,
+				DF856ADDAD23645F58859C4F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +107,7 @@
 				4DDC2E7721F37B3500F189DF /* PJSIPIntegration.h */,
 				4DDC2E7421F37AFB00F189DF /* SIOSP-Bridging-Header.h */,
 				4DFE06DC21F518FC0009049E /* ringtone.wav */,
+				84276FB021F60A250068F398 /* IncomingCallViewController.swift */,
 			);
 			path = SIOSP;
 			sourceTree = "<group>";
@@ -106,6 +121,26 @@
 			path = SIOSPTests;
 			sourceTree = "<group>";
 		};
+		9C5FB150033F66187D1CF70F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F2FBCC56D16607C5686E4D3 /* Pods-SIOSP.debug.xcconfig */,
+				BFDDED88BE586849049690A3 /* Pods-SIOSP.release.xcconfig */,
+				3FFD2BA0EA3C882AF4AEEBDC /* Pods-SIOSPTests.debug.xcconfig */,
+				382CEB69D3C2A87F343C524D /* Pods-SIOSPTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DF856ADDAD23645F58859C4F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37FB0D158BDD2F08D64C3C11 /* Pods_SIOSP.framework */,
+				469EBF50973D20798F9586AC /* Pods_SIOSPTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,6 +148,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DF5590421F372FA004C4428 /* Build configuration list for PBXNativeTarget "SIOSP" */;
 			buildPhases = (
+				A1C7343AFDBA3A6803996BC7 /* [CP] Check Pods Manifest.lock */,
 				4DF558E321F372F6004C4428 /* Sources */,
 				4DF558E421F372F6004C4428 /* Frameworks */,
 				4DF558E521F372F6004C4428 /* Resources */,
@@ -130,6 +166,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DF5590721F372FA004C4428 /* Build configuration list for PBXNativeTarget "SIOSPTests" */;
 			buildPhases = (
+				CDD1EBB1C9D2E2CB96D21A2B /* [CP] Check Pods Manifest.lock */,
 				4DF558F721F372FA004C4428 /* Sources */,
 				4DF558F821F372FA004C4428 /* Frameworks */,
 				4DF558F921F372FA004C4428 /* Resources */,
@@ -204,11 +241,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A1C7343AFDBA3A6803996BC7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SIOSP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDD1EBB1C9D2E2CB96D21A2B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SIOSPTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4DF558E321F372F6004C4428 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84276FB121F60A250068F398 /* IncomingCallViewController.swift in Sources */,
 				4DF558ED21F372F6004C4428 /* ViewController.swift in Sources */,
 				4DF558EB21F372F6004C4428 /* AppDelegate.swift in Sources */,
 				4DDC2E7621F37AFC00F189DF /* PJSIPIntegration.m in Sources */,
@@ -371,6 +448,7 @@
 		};
 		4DF5590521F372FA004C4428 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F2FBCC56D16607C5686E4D3 /* Pods-SIOSP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -394,6 +472,7 @@
 		};
 		4DF5590621F372FA004C4428 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFDDED88BE586849049690A3 /* Pods-SIOSP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -416,6 +495,7 @@
 		};
 		4DF5590821F372FA004C4428 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FFD2BA0EA3C882AF4AEEBDC /* Pods-SIOSPTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -437,6 +517,7 @@
 		};
 		4DF5590921F372FA004C4428 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 382CEB69D3C2A87F343C524D /* Pods-SIOSPTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
