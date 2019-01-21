@@ -12,12 +12,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let pjsipIntegration: PJSIPIntegration = PJSIPIntegration()
+        pjsipIntegration.configurePJSIP()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func touchButton(_ sender: Any) {
         let pjsipIntegration: PJSIPIntegration = PJSIPIntegration()
-        pjsipIntegration.testSIP()
+        
+        pjsipIntegration.activateSoundDevice()
+        pjsipIntegration.makeCall()
     }
 }
 

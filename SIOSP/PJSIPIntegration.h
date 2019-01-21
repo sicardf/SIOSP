@@ -16,8 +16,10 @@
 
 @property (strong, nonatomic) id someProperty;
 
-- (void) someMethod;
-- (void) testSIP;
+- (void) testPJSIP;
+- (void) makeCall;
+- (BOOL) activateSoundDevice;
+- (pj_status_t) configurePJSIP;
 
 @end
 
