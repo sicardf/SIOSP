@@ -12,14 +12,21 @@
 #import <Foundation/Foundation.h>
 #import <pjsua.h>
 
+@import AVFoundation;
+
 @interface PJSIPIntegration : NSObject
 
-@property (strong, nonatomic) id someProperty;
-
-- (void) testPJSIP;
-- (void) makeCall;
-- (BOOL) activateSoundDevice;
++ (instancetype _Nonnull)sharedInstance;
 - (pj_status_t) configurePJSIP;
+- (BOOL) activateSoundDevice;
+- (BOOL) makeCall: (NSString *)str;
+- (void) changeOutputAudioPort: (AVAudioSessionPortOverride)port;
+- (void) configureIncomingCall:(void (^)(void))inn;
+- (void) configureStarCall:(void (^)(void))inn;
+- (void) configureEndCall:(void (^)(void))inn;
+- (BOOL) acceptCall;
+- (void) declineCall;
+- (void) stopCall;
 
 @end
 
