@@ -12,21 +12,14 @@ pjsua_acc_id accountIdentifier;
 static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_data *rdata);
 static void on_call_state(pjsua_call_id call_id, pjsip_event *e);
 
-//NSString *idSIP = @"sip:sicardf@sip.antisip.com";
-//NSString *uri = @"sip:sip.antisip.com";
-//NSString *scheme = @"digest";
-//NSString *realm = @"*";
-//NSString *username = @"sicardf";
-//NSString *password = @"tudkig-mafbuf-masWo0";
-
-NSString *idSIP = @"sip:sicardf2@sip.antisip.com";
+NSString *idSIP = @"sip:sicardf@sip.antisip.com";
 NSString *uri = @"sip:sip.antisip.com";
 NSString *scheme = @"digest";
 NSString *realm = @"*";
-NSString *username = @"sicardf2";
-NSString *password = @"muSwyc-wekhy0-humcyc";
+NSString *username = @"sicardf";
+NSString *password = @"";
 
-void (^incomin)(void);
+void (^incomingCall)(void);
 void (^startCall)(void);
 void (^endCall)(void);
 
@@ -49,6 +42,7 @@ pjsua_call_id incoming_call_id;
     
     status = pjsua_create();
     if (status != PJ_SUCCESS) {
+        NSLog(@"❌ Error creating PJSUA");
         return status;
     }
 
@@ -81,13 +75,13 @@ pjsua_call_id incoming_call_id;
     
     status = pjsua_transport_create(PJSIP_TRANSPORT_UDP, &transport_config, &transportIdentifier);
     if (status != PJ_SUCCESS) {
-        NSLog(@"Error creating UDP transport");
+        NSLog(@"❌ Error creating UDP transport");
         return status;
     }
     
     status = pjsua_transport_create(PJSIP_TRANSPORT_TCP, &transport_config, NULL);
     if (status != PJ_SUCCESS) {
-        NSLog(@"Error creating TCP transport");
+        NSLog(@"❌ Error creating TCP transport");
         return status;
     }
     
@@ -95,7 +89,7 @@ pjsua_call_id incoming_call_id;
     
     pjsua_set_no_snd_dev();
     if (status != PJ_SUCCESS) {
-        NSLog(@"Error starting PJSUA");
+        NSLog(@"❌ Error starting PJSUA");
         return status;
     }
     
@@ -113,6 +107,7 @@ pjsua_call_id incoming_call_id;
     
     status = pjsua_acc_add(&acc_cfg, PJ_FALSE, &accountIdentifier);
     if (status != PJ_SUCCESS) {
+        NSLog(@"❌ Error adding config");
         return status;
     }
 
@@ -126,7 +121,7 @@ pjsua_call_id incoming_call_id;
 
     status = pjsua_set_snd_dev(PJMEDIA_AUD_DEFAULT_CAPTURE_DEV, PJMEDIA_AUD_DEFAULT_PLAYBACK_DEV);
     if (status != PJ_SUCCESS) {
-        NSLog(@"Failure in enabling sound device");
+        NSLog(@"❌ Error in enabling sound device");
         return NO;
     }
     
@@ -141,11 +136,97 @@ pjsua_call_id incoming_call_id;
     status = pjsua_call_make_call(accountIdentifier, &uri, 0, NULL, NULL, NULL);
     
     if (status != PJ_SUCCESS) {
-        NSLog(@"Failure in enabling sound device");
+        NSLog(@"❌ Error in enabling sound device");
         return NO;
     }
     
     return YES;
+}
+
+- (void) changeOutputAudioPort:(AVAudioSessionPortOverride)port {
+    NSError *audioSessionCategoryError;
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&audioSessionCategoryError];
+    [audioSession overrideOutputAudioPort:port error:nil];
+}
+
+- (void) configureIncomingCall:(void (^)(void))block {
+    incomingCall = block;
+}
+
+- (void) configureStarCall:(void (^)(void))block {
+    startCall = block;
+}
+
+- (void) configureEndCall:(void (^)(void))block {
+    endCall = block;
+}
+
+- (BOOL) acceptCall {
+    pj_status_t status;
+    
+    status = pjsua_call_answer((pjsua_call_id)incoming_call_id, PJSIP_SC_ACCEPTED, NULL, NULL);
+    if (status != PJ_SUCCESS) {
+        NSLog(@"❌ Error %d while sending status code PJSIP_SC_RINGING", status);
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void) declineCall {
+    pj_status_t status;
+    
+    status = pjsua_call_answer((pjsua_call_id)incoming_call_id, PJSIP_SC_DECLINE, NULL, NULL);
+    if (status != PJ_SUCCESS) {
+        NSLog(@"❌ Error %d while sending status code PJSIP_SC_RINGING", status);
+    }
+}
+
+- (void) stopCall {
+    pj_status_t status;
+    
+    status = pjsua_call_hangup(incoming_call_id, 0, NULL, NULL);
+}
+
+static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_data *rdata) {
+    pj_status_t status;
+    
+    incoming_call_id = call_id;
+    
+    status = pjsua_call_answer((pjsua_call_id)call_id, PJSIP_SC_RINGING, NULL, NULL);
+    if (status != PJ_SUCCESS) {
+        NSLog(@"❌ Error %d while sending status code PJSIP_SC_RINGING", status);
+    }
+    
+    incomingCall();
+}
+
+static void on_call_state(pjsua_call_id call_id, pjsip_event *e) {
+    pjsua_call_info ci;
+    
+    PJ_UNUSED_ARG(e);
+    
+    pjsua_call_get_info(call_id, &ci);
+
+//    if (ci.state == PJSIP_INV_STATE_CONNECTING) {
+//       // startCall();
+//    }
+    
+    if (ci.state == PJSIP_INV_STATE_DISCONNECTED) {
+        endCall();
+    }
+}
+
+static void on_call_media_state(pjsua_call_id call_id) {
+    pjsua_call_info ci;
+    pjsua_call_get_info(call_id, &ci);
+    
+    if (ci.media_status == PJSUA_CALL_MEDIA_ACTIVE) {
+        pjsua_conf_connect(ci.conf_slot, 0);
+        pjsua_conf_connect(0, ci.conf_slot);
+    }
 }
 
 - (char *)cStringFromNSString:(NSString *)string {
@@ -161,100 +242,6 @@ pjsua_call_id incoming_call_id;
     [string getCString:result maxLength:[string length] + 1 encoding:NSUTF8StringEncoding];
     
     return result;
-}
-
-- (void) changeOutputAudioPort:(AVAudioSessionPortOverride)port {
-    NSError *audioSessionCategoryError;
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    
-    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&audioSessionCategoryError];
-    [audioSession overrideOutputAudioPort:port error:nil];
-}
-
-- (void) configureIncomingCall:(void (^)(void))inn {
-    incomin = inn;
-}
-
-- (void) configureStarCall:(void (^)(void))inn {
-    startCall = inn;
-}
-
-- (void) configureEndCall:(void (^)(void))inn {
-    endCall = inn;
-}
-
-- (BOOL) acceptCall {
-    pj_status_t status;
-    
-    status = pjsua_call_answer((pjsua_call_id)incoming_call_id, PJSIP_SC_ACCEPTED, NULL, NULL);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"Error %d while sending status code PJSIP_SC_RINGING", status);
-        return NO;
-    }
-    
-    return YES;
-}
-
-- (void) declineCall {
-    pj_status_t status;
-    
-    status = pjsua_call_answer((pjsua_call_id)incoming_call_id, PJSIP_SC_DECLINE, NULL, NULL);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"Error %d while sending status code PJSIP_SC_RINGING", status);
-    }
-}
-
-- (void) stopCall {
-    pj_status_t status;
-    
-    status = pjsua_call_hangup(incoming_call_id, 0, NULL, NULL);
-}
-
-static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_data *rdata) {
-    pj_status_t status;
-    
-    incoming_call_id = call_id;
-    
-    pjsua_call_info info;
-    status = pjsua_call_get_info(call_id, &info);
-
-    if (status == PJ_SUCCESS) {
-        NSLog(@"ENTRANT");
-    }
-
-    status = pjsua_call_answer((pjsua_call_id)call_id, PJSIP_SC_RINGING, NULL, NULL);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"Error %d while sending status code PJSIP_SC_RINGING", status);
-    }
-    
-    incomin();
-}
-
-static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
-{
-    pjsua_call_info ci;
-    
-    PJ_UNUSED_ARG(e);
-    
-    pjsua_call_get_info(call_id, &ci);
-
-    if (ci.state == PJSIP_INV_STATE_CONNECTING) {
-       // startCall();
-    }
-    
-    if (ci.state == PJSIP_INV_STATE_DISCONNECTED) {
-        endCall();
-    }
-}
-
-static void on_call_media_state(pjsua_call_id call_id) {
-    pjsua_call_info ci;
-    pjsua_call_get_info(call_id, &ci);
-    
-    if (ci.media_status == PJSUA_CALL_MEDIA_ACTIVE) {
-        pjsua_conf_connect(ci.conf_slot, 0);
-        pjsua_conf_connect(0, ci.conf_slot);
-    }
 }
 
 @end

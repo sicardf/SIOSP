@@ -19,11 +19,11 @@
 + (instancetype _Nonnull)sharedInstance;
 - (pj_status_t) configurePJSIP;
 - (BOOL) activateSoundDevice;
-- (BOOL) makeCall: (NSString *)str;
-- (void) changeOutputAudioPort: (AVAudioSessionPortOverride)port;
-- (void) configureIncomingCall:(void (^)(void))inn;
-- (void) configureStarCall:(void (^)(void))inn;
-- (void) configureEndCall:(void (^)(void))inn;
+- (BOOL) makeCall:(NSString *)str;
+- (void) changeOutputAudioPort:(AVAudioSessionPortOverride)port;
+- (void) configureIncomingCall:(void (^)(void))block;
+- (void) configureStarCall:(void (^)(void))block;
+- (void) configureEndCall:(void (^)(void))block;
 - (BOOL) acceptCall;
 - (void) declineCall;
 - (void) stopCall;

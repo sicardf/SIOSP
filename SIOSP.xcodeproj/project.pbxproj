@@ -12,7 +12,7 @@
 		4DDC2E7621F37AFC00F189DF /* PJSIPIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DDC2E7521F37AFC00F189DF /* PJSIPIntegration.m */; };
 		4DF27EB721F9B4710081013E /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF27EB621F9B4710081013E /* ViewController+Extension.swift */; };
 		4DF558EB21F372F6004C4428 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF558EA21F372F6004C4428 /* AppDelegate.swift */; };
-		4DF558ED21F372F6004C4428 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF558EC21F372F6004C4428 /* ViewController.swift */; };
+		4DF558ED21F372F6004C4428 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF558EC21F372F6004C4428 /* HomeViewController.swift */; };
 		4DF558F021F372F6004C4428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF558EE21F372F6004C4428 /* Main.storyboard */; };
 		4DF558F221F372FA004C4428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DF558F121F372FA004C4428 /* Assets.xcassets */; };
 		4DF558F521F372FA004C4428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DF558F321F372FA004C4428 /* LaunchScreen.storyboard */; };
@@ -41,7 +41,7 @@
 		4DF27EB621F9B4710081013E /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		4DF558E721F372F6004C4428 /* SIOSP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SIOSP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DF558EA21F372F6004C4428 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4DF558EC21F372F6004C4428 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4DF558EC21F372F6004C4428 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4DF558EF21F372F6004C4428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DF558F121F372FA004C4428 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DF558F421F372FA004C4428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,6 +76,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DF27EB821F9BB6C0081013E /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				4DDC2E7521F37AFC00F189DF /* PJSIPIntegration.m */,
+				4DDC2E7721F37B3500F189DF /* PJSIPIntegration.h */,
+				4DDC2E7421F37AFB00F189DF /* SIOSP-Bridging-Header.h */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		4DF27EB921F9BB770081013E /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				4DF558F621F372FA004C4428 /* Info.plist */,
+				4DF558F121F372FA004C4428 /* Assets.xcassets */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		4DF27EBA21F9BB870081013E /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				4DF558EE21F372F6004C4428 /* Main.storyboard */,
+				4DF558F321F372FA004C4428 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		4DF27EBB21F9BB9C0081013E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4DF558EC21F372F6004C4428 /* HomeViewController.swift */,
+				4D1EA55E21F8A8AF0057A4E6 /* IncomingViewController.swift */,
+				4D1EA56021F8AE5E0057A4E6 /* CallViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		4DF27EBC21F9BBAE0081013E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4DF27EB621F9B4710081013E /* ViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4DF558DE21F372F6004C4428 = {
 			isa = PBXGroup;
 			children = (
@@ -100,17 +146,11 @@
 			isa = PBXGroup;
 			children = (
 				4DF558EA21F372F6004C4428 /* AppDelegate.swift */,
-				4DF558EC21F372F6004C4428 /* ViewController.swift */,
-				4DF558EE21F372F6004C4428 /* Main.storyboard */,
-				4DF558F121F372FA004C4428 /* Assets.xcassets */,
-				4DF558F321F372FA004C4428 /* LaunchScreen.storyboard */,
-				4DF558F621F372FA004C4428 /* Info.plist */,
-				4DDC2E7521F37AFC00F189DF /* PJSIPIntegration.m */,
-				4DDC2E7721F37B3500F189DF /* PJSIPIntegration.h */,
-				4DDC2E7421F37AFB00F189DF /* SIOSP-Bridging-Header.h */,
-				4D1EA55E21F8A8AF0057A4E6 /* IncomingViewController.swift */,
-				4D1EA56021F8AE5E0057A4E6 /* CallViewController.swift */,
-				4DF27EB621F9B4710081013E /* ViewController+Extension.swift */,
+				4DF27EB821F9BB6C0081013E /* Lib */,
+				4DF27EBA21F9BB870081013E /* Storyboard */,
+				4DF27EBB21F9BB9C0081013E /* Scenes */,
+				4DF27EBC21F9BBAE0081013E /* Extensions */,
+				4DF27EB921F9BB770081013E /* Ressources */,
 			);
 			path = SIOSP;
 			sourceTree = "<group>";
@@ -300,7 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DF558ED21F372F6004C4428 /* ViewController.swift in Sources */,
+				4DF558ED21F372F6004C4428 /* HomeViewController.swift in Sources */,
 				4DF558EB21F372F6004C4428 /* AppDelegate.swift in Sources */,
 				4DF27EB721F9B4710081013E /* ViewController+Extension.swift in Sources */,
 				4D1EA55F21F8A8AF0057A4E6 /* IncomingViewController.swift in Sources */,
@@ -472,7 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EL5X43Y3RJ;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = SIOSP/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SIOSP/Ressources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -480,7 +520,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.sicardf.SIOSP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SIOSP/SIOSP-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SIOSP/Lib/SIOSP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -496,7 +536,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EL5X43Y3RJ;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = SIOSP/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SIOSP/Ressources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,7 +544,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.sicardf.SIOSP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SIOSP/SIOSP-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "SIOSP/Lib/SIOSP-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

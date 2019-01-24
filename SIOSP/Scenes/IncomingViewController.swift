@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import AVFoundation
 
 class IncomingViewController: UIViewController {
     
-    var player: AVAudioPlayer?
-    weak var vcvc: ViewController?
+    weak var homeViewController: HomeViewController?
     
     static var identifier: String {
         return String(describing: self)
@@ -24,23 +22,17 @@ class IncomingViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        PJSIPIntegration.sharedInstance().activateSoundDevice()
-    }
-    
-    @IBAction func accept(_ sender: Any) {
+    @IBAction func acceptedButtonPressed(_ sender: Any) {
         if PJSIPIntegration.sharedInstance().acceptCall() {
             self.dismiss(animated: true) {
-                self.vcvc?.presentCall(animated: false)
+                self.homeViewController?.presentCall(animated: false)
             }
         } else {
             self.dismiss(animated: true, completion: nil)
         }
     }
     
-    @IBAction func declineTouch(_ sender: Any) {
+    @IBAction func declinedButtonPressed(_ sender: Any) {
         PJSIPIntegration.sharedInstance().declineCall()
         self.dismiss(animated: true, completion: nil)
     }

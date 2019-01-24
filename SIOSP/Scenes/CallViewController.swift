@@ -27,7 +27,7 @@ class CallViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func endCallTOuch(_ sender: Any) {
+    @IBAction func endCallButtonPressed(_ sender: Any) {
         PJSIPIntegration.sharedInstance().stopCall()
         dismiss(animated: true, completion: nil)
     }
