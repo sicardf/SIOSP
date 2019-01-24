@@ -22,7 +22,6 @@ class HomeViewController: UIViewController {
                 self.presentIncomingCall()
             }
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func touchButton(_ sender: Any) {
@@ -34,10 +33,6 @@ class HomeViewController: UIViewController {
         if let vc = storyboard?.instantiateViewController(withIdentifier: CallViewController.identifier) as? CallViewController {
             present(vc, animated: true, completion: nil)
         }
-    }
-    
-    @IBAction func touchSpeaker(_ sender: Any) {
-        PJSIPIntegration.sharedInstance().changeOutputAudioPort(.speaker)
     }
     
     internal func presentCall(animated: Bool = true) {

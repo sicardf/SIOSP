@@ -25,8 +25,8 @@
 - (void) configureStarCall:(void (^)(void))block;
 - (void) configureEndCall:(void (^)(void))block;
 - (BOOL) acceptCall;
-- (void) declineCall;
-- (void) stopCall;
+- (BOOL) declineCall;
+- (BOOL) stopCall;
 
 @end
 

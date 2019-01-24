@@ -19,7 +19,11 @@ class IncomingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        PJSIPIntegration.sharedInstance().configureEndCall {
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func acceptedButtonPressed(_ sender: Any) {
@@ -33,7 +37,10 @@ class IncomingViewController: UIViewController {
     }
     
     @IBAction func declinedButtonPressed(_ sender: Any) {
-        PJSIPIntegration.sharedInstance().declineCall()
-        self.dismiss(animated: true, completion: nil)
+        if PJSIPIntegration.sharedInstance().declineCall() {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            alertView(title: "Error", message: "An error has occurred. Please try again")
+        }
     }
 }

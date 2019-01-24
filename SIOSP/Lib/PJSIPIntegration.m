@@ -12,12 +12,12 @@ pjsua_acc_id accountIdentifier;
 static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_data *rdata);
 static void on_call_state(pjsua_call_id call_id, pjsip_event *e);
 
-NSString *idSIP = @"sip:sicardf@sip.antisip.com";
+NSString *idSIP = @"sip:<login>@sip.antisip.com";
 NSString *uri = @"sip:sip.antisip.com";
 NSString *scheme = @"digest";
 NSString *realm = @"*";
-NSString *username = @"sicardf";
-NSString *password = @"";
+NSString *username = @"<login>";
+NSString *password = @"<password>";
 
 void (^incomingCall)(void);
 void (^startCall)(void);
@@ -175,19 +175,28 @@ pjsua_call_id incoming_call_id;
     return YES;
 }
 
-- (void) declineCall {
+- (BOOL) declineCall {
     pj_status_t status;
     
     status = pjsua_call_answer((pjsua_call_id)incoming_call_id, PJSIP_SC_DECLINE, NULL, NULL);
     if (status != PJ_SUCCESS) {
         NSLog(@"❌ Error %d while sending status code PJSIP_SC_RINGING", status);
+        return NO;
     }
+    
+    return YES;
 }
 
-- (void) stopCall {
+- (BOOL) stopCall {
     pj_status_t status;
     
     status = pjsua_call_hangup(incoming_call_id, 0, NULL, NULL);
+    if (status != PJ_SUCCESS) {
+        NSLog(@"❌ Error %d while hangup", status);
+        return NO;
+    }
+    
+    return YES;
 }
 
 static void onIncomingCall(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_rx_data *rdata) {
@@ -209,10 +218,6 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e) {
     PJ_UNUSED_ARG(e);
     
     pjsua_call_get_info(call_id, &ci);
-
-//    if (ci.state == PJSIP_INV_STATE_CONNECTING) {
-//       // startCall();
-//    }
     
     if (ci.state == PJSIP_INV_STATE_DISCONNECTED) {
         endCall();

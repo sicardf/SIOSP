@@ -24,11 +24,13 @@ class CallViewController: UIViewController {
                 self.dismiss(animated: true, completion: nil)
             }
         }
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func endCallButtonPressed(_ sender: Any) {
-        PJSIPIntegration.sharedInstance().stopCall()
-        dismiss(animated: true, completion: nil)
+        if PJSIPIntegration.sharedInstance().stopCall() {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            alertView(title: "Error", message: "An error has occurred. Please try again")
+        }
     }
 }
